@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * 2019/3/28
  */
 object ApiRequest {
-    val retrofit = Retrofit.Builder()
+    private val retrofit = Retrofit.Builder()
         .baseUrl(ApiConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(LiveDataCallAdapterFactory())

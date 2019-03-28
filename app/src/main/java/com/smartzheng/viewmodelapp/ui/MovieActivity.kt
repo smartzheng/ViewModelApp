@@ -23,7 +23,7 @@ class MovieActivity : AppCompatActivity() {
         viewDataBinding.lifecycleOwner = this
         vm.response.observe(this, Observer<Movie> {
             if (it != null) {
-                vm.adapter.addMovie(it.subjects)
+                vm.addMovies(it.subjects)
                 viewDataBinding.executePendingBindings()
             }
         })
