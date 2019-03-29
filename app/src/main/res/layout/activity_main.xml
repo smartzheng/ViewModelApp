@@ -4,8 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.smartzheng.viewmodelapp.viewmodel.MovieViewModel"/>
 
+        <import type="com.smartzheng.viewmodelapp.viewmodel.MovieViewModel"/>
         <variable
                 name="model"
                 type="MovieViewModel">
@@ -16,7 +16,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.MovieActivity">
+            tools:context=".ui.MainActivity">
 
         <EditText
                 android:id="@+id/et"
