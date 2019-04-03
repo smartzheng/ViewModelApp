@@ -14,7 +14,7 @@ import com.smartzheng.viewmodelapp.R
  * 2019/3/29
  */
 abstract class BaseBindingAdapter<T, M : ViewDataBinding>(@LayoutRes id: Int) :
-    BaseQuickAdapter<T, RecyclerViewHolder>(id) {
+    BaseQuickAdapter<T, BaseBindingAdapter.RecyclerViewHolder>(id) {
     override fun convert(helper: RecyclerViewHolder, item: T) {
         setVariable(helper.dataBinding, item)
         helper.dataBinding.executePendingBindings()
@@ -33,9 +33,9 @@ abstract class BaseBindingAdapter<T, M : ViewDataBinding>(@LayoutRes id: Int) :
         return view
     }
 
+    class RecyclerViewHolder(view: View) : BaseViewHolder(view) {
+        var dataBinding: ViewDataBinding =
+            itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as ViewDataBinding
+    }
 }
 
-class RecyclerViewHolder(view: View) : BaseViewHolder(view) {
-    var dataBinding: ViewDataBinding =
-        itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as ViewDataBinding
-}
