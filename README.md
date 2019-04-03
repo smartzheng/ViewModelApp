@@ -1,0 +1,2 @@
+# ViewModelApp
+基于databinding+livedata，并改写retrofit的callAdapter实现一个基础架构。
