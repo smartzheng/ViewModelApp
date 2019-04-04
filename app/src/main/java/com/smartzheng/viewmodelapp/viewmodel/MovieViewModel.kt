@@ -1,5 +1,6 @@
 package com.smartzheng.viewmodelapp.viewmodel
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,16 +16,30 @@ class MovieViewModel : ViewModel() {
 
     var title = MutableLiveData<String>()
 
-    private lateinit var movies: LiveData<Movie>
+    private lateinit var movies: MutableLiveData<Movie>
 
     fun afterTextChanged(s: Editable) {
-        title.value = s.toString()
+        title.postValue(s.toString())
     }
 
+    @SuppressLint("CheckResult")
     fun getMovies(): LiveData<Movie> {
+        //返回MutableLiveData
         if (!::movies.isInitialized) {
-            movies = ApiRequest.get().top250()
+            movies = ApiRequest.getLive().top250()
         }
+
+        //直接使用Observable
+//        if (!::movies.isInitialized) {
+//            movies = MutableLiveData()
+//             ApiRequest.getRx()
+//                .theaters()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe {
+//                    movies.postValue(it)
+//                }
+//        }
         return movies
     }
 }

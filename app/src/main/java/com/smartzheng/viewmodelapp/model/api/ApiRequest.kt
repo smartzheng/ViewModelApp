@@ -1,6 +1,7 @@
 package com.smartzheng.viewmodelapp.model.api
 
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
@@ -16,7 +17,18 @@ object ApiRequest {
         .build()
         .create(ApiService::class.java)!!
 
-    fun get(): ApiService {
+    private val rxRetrofit = Retrofit.Builder()
+        .baseUrl(ApiConfig.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .build()
+        .create(ApiService::class.java)!!
+
+    fun getLive(): ApiService {
         return retrofit
+    }
+
+    fun getRx(): ApiService {
+        return rxRetrofit
     }
 }

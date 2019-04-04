@@ -1,6 +1,6 @@
 package com.smartzheng.viewmodelapp.model.api
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.smartzheng.viewmodelapp.model.entity.Movie
 import retrofit2.http.GET
 
@@ -10,9 +10,10 @@ import retrofit2.http.GET
  * 2019/3/28
  */
 interface ApiService {
+    //自定义callAdapter直接返回MutableLiveData
     @GET(ApiConfig.TOP250)
-    fun top250(): LiveData<Movie>
-
-    @GET(ApiConfig.THEATERS)
-    fun theaters(): LiveData<Movie>
+    fun top250(): MutableLiveData<Movie>
+    //常见使用方式
+//    @GET(ApiConfig.THEATERS)
+//    fun theaters(): Observable<Movie>
 }
