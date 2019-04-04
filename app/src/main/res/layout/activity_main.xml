@@ -7,8 +7,14 @@
 
         <import type="com.smartzheng.viewmodelapp.viewmodel.MovieViewModel"/>
         <variable
-                name="model"
+                name="viewModel"
                 type="MovieViewModel">
+        </variable>
+
+        <import type="com.smartzheng.viewmodelapp.ui.MainActivity"/>
+        <variable
+                name="view"
+                type="MainActivity">
         </variable>
     </data>
 
@@ -22,22 +28,20 @@
                 android:id="@+id/et"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:afterTextChanged="@{model.afterTextChanged}"
+                android:afterTextChanged="@{viewModel.afterTextChanged}"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
         <TextView
                 android:textSize="20sp"
                 android:gravity="center"
-                android:text="@{model.title}"
+                android:text="@{viewModel.title}"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/rv"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:adapter="@{model.adapter}"
                 android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
