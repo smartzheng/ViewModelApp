@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 
 
 abstract class BaseActivity<T : ViewDataBinding, M : ViewModel> : AppCompatActivity() {
@@ -13,12 +14,21 @@ abstract class BaseActivity<T : ViewDataBinding, M : ViewModel> : AppCompatActiv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        viewModel = initViewModel()
         viewDataBinding = setViewDataBinding()
         viewDataBinding.lifecycleOwner = this
-        initView()
+        initViewAndData()
     }
 
-    abstract fun initView()
+    private fun initViewModel(): M {
+        return ViewModelProviders.of(this, ViewModelFactory(this, arguments())).get(viewModelClass())
+    }
+
+    abstract fun arguments(): Bundle?
+
+    abstract fun viewModelClass(): Class<M>
+
+    abstract fun initViewAndData()
 
     private fun setViewDataBinding(): T {
         return DataBindingUtil.setContentView(this, getLayoutId())

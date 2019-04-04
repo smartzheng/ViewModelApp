@@ -1,4 +1,4 @@
-package com.smartzheng.viewmodelapp.ui
+package com.smartzheng.viewmodelapp.ui.adapter
 
 import androidx.databinding.ViewDataBinding
 import com.smartzheng.viewmodelapp.BR

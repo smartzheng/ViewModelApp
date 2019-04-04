@@ -1,18 +1,20 @@
 package com.smartzheng.viewmodelapp.viewmodel
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Bundle
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.smartzheng.viewmodelapp.model.api.ApiRequest
 import com.smartzheng.viewmodelapp.model.entity.Movie
+import com.smartzheng.viewmodelapp.viewmodel.base.BaseViewModel
 
 /**
  * Created by smartzheng
  * 2019/3/28
  */
-class MovieViewModel : ViewModel() {
+class MovieViewModel(context: Context, arguments: Bundle?) : BaseViewModel(context, arguments) {
 
     var title = MutableLiveData<String>()
 
