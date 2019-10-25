@@ -21,7 +21,7 @@ abstract class BaseActivity<T : ViewDataBinding, M : ViewModel> : AppCompatActiv
     }
 
     private fun initViewModel(): M {
-        return ViewModelProviders.of(this, ViewModelFactory(this, arguments())).get(viewModelClass())
+        return ViewModelProviders.of(this, ViewModelFactory(this, arguments())).get(viewModel::class.java)
     }
 
     abstract fun arguments(): Bundle?

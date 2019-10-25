@@ -19,11 +19,11 @@ class LiveDataCallAdapterFactory : CallAdapter.Factory() {
         if (returnType !is ParameterizedType) {
             throw IllegalArgumentException("返回值需为参数化类型")
         }
-        val returnClass = CallAdapter.Factory.getRawType(returnType)
+        val returnClass = getRawType(returnType)
         if (returnClass != MutableLiveData::class.java) {
             throw IllegalArgumentException("返回值不是LiveData类型")
         }
-        val type = CallAdapter.Factory.getParameterUpperBound(0, returnType)
+        val type = getParameterUpperBound(0, returnType)
         return LiveDataCallAdapter<Any>(type)
     }
 

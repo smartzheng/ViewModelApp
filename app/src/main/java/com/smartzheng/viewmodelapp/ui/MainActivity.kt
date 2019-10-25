@@ -1,7 +1,6 @@
 package com.smartzheng.viewmodelapp.ui
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smartzheng.viewmodelapp.R
 import com.smartzheng.viewmodelapp.databinding.ActivityMainBinding
@@ -28,7 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MovieViewModel>() {
         viewDataBinding.viewModel = viewModel
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(this)
-        viewModel.getMovies().observe(this, Observer<Movie> {
+        viewModel.getMovies().observe(this, androidx.lifecycle.Observer<Movie> {
             if (it != null) {
                 adapter.addData(it.subjects)
             }
@@ -38,4 +37,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MovieViewModel>() {
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }
+
+
 }
